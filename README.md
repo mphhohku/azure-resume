@@ -1,2 +1,24 @@
 # azure-resume
 My own Azure resume following A Cloud Guru Projects video
+
+Why I decided to take this challenge
+After finishing some COMPTIA certifications and LinkedIn Learning courses on CISSP and CISA, I decided to read through the materials of learning paths on Microsoft Learn but I quickly got burned out because I was just reading but not internalizing any knowledge to boost my technical skills meaningfully. I decided to switch from certification-based learning to project-based learning. I know Gwyn as a YouTuber who promotes her LearnToCloud platform, so I think following her tutorial would be a great start for my entry to cloud engineering knowledge, and adding the project to my tech portfolio would improve my chance to progress in the tech industry.
+
+First-times
+- Setting up SSH connection and cloning with Github, and Github Desktop
+- Creating an Azure account with free credits
+- Creating an Azure Cosmos DB for NoSQL database 
+- Using new development tools such as .NET SDK 3.1, Azure Functions, Azure Functions Core Tools
+- Using tools such as Chocolatey for Windows and Hebrew for MacOS
+
+Modifications of the frontend template for the website
+- Add more nav links and troubleshoot CSS issues related to changing colors on scroll
+- Fixing some CSS padding parameters for aesthetics
+- Changing the Fa fa icons
+- Cater to accessibility (alt text to pictures)
+
+Major hiccups
+- I was trying to finish this project on an enterprise-owned Windows 10 device. But while I could install most toolkits without admin privilege. I could not troubleshoot to have the counter function to run locally using the NET SDK 3.1 version, following what Gwyn would do in her tutorial on YouTube. The reason why was probably that I installed the SDK without admin rights so Visual Studio Code 2022 could not read SDK files properly. So, after hours of unsuccessful troubleshooting, I decided to see what everybody else is doing with this challenge. I am going to try out Jeff Brown's codes, it seems he used another method to bind the Azure Cosmos DB. https://jeffbrown.tech/azure-cloud-resume-challenge-part-3/
+
+Troubleshooting techniques
+- Googling the questions I had/error codes. Most answers were on stackexchange and github discussion forums.
