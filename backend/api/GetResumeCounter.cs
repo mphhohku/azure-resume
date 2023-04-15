@@ -1,35 +1,73 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
+using System.Net;
+using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Azure.Cosmos;
+using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace Company.Function
 {
-    public static class GetResumeCounter
+    public class GetResumeCounter
     {
-        [FunctionName("GetResumeCounter")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-            ILogger log)
+        private readonly ILogger<GetResumeCounter> _logger;
+
+        public GetResumeCounter(ILogger<GetResumeCounter> logger)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
-
-            string name = req.Query["name"];
-
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
-
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
-
-            return new OkObjectResult(responseMessage);
+            _logger = logger;
         }
+
+
+        private static readonly string databaseName = "AzureResume";
+        private static readonly string collectionName = "Counter";
+        // private static readonly string connectionString = Environment.GetEnvironmentVariable("AzureResumeConnectionString");
+        private static readonly string id = "1";
+        private static readonly string partitionKey = "1";
+
+        [Function("GetResumeCounter")]
+        public static async Task<HttpResponseMessage> Run(
+           [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
+           ILogger _logger)
+        {
+            // Check if _logger is null
+            if (_logger == null)
+            {
+            // Reinitialize _logger
+            _logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger<GetResumeCounter>();
+            }
+
+       // Get the Cosmos DB client instance
+        try
+            {
+                // Connect to Cosmos DB database
+                var client = new CosmosClient(Environment.GetEnvironmentVariable("AzureResumeConnectionString"));
+                var database = client.GetDatabase(databaseName);
+                var container = database.GetContainer(collectionName);
+
+                // Read the current count from the database
+                var response = await container.ReadItemAsync<Counter>(id, new PartitionKey(partitionKey));
+                var counter = response.Resource;
+                int count = counter.Count;
+
+                // Increase the count by 1
+                count++;
+                counter.Count = count;
+
+                // Update the count in the database
+                await container.ReplaceItemAsync(counter, id, new PartitionKey(partitionKey));
+
+                // Return the updated count as a JSON string
+                var json = JsonConvert.SerializeObject(counter);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                return new HttpResponseMessage(HttpStatusCode.OK) { Content = content };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to count visitors");
+                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
+            }
+        }
+        
     }
 }
