@@ -1,8 +1,8 @@
 # azure-resume
 My own Azure resume following A Cloud Guru Projects video in 2021 https://www.youtube.com/watch?v=ieYrBWmkfno&list=PLI1_CQcV71Rn-Om5fPU47KExd7ZQjvpl9
 
-Project start date: 11 April 2023
-Project end date: April 2023
+- Project start date: 11 April 2023
+- Project end date: April 2023
 
 Why I decided to take this challenge
 After getting some CompTIA certifications and finishing LinkedIn Learning courses on CISSP and CISA, I decided to read through the materials of learning paths on Microsoft Learn but I quickly got burned out because I was just reading but not internalizing the knowledge to boost my technical skills meaningfully. I decided to switch from certification-based learning to project-based learning. I know Gwyn as a YouTuber who promotes her LearnToCloud platform, so I think following her tutorial would be a great start for my entry to cloud engineering knowledge, and adding the project to my tech portfolio would improve my chance to progress in the tech industry.
@@ -29,7 +29,7 @@ Modifications of the frontend template for the website
 Major hiccups
 - I was trying to finish this project using the NET SDK 3.1 version, following what Gwyn would do in her tutorial on YouTube. The reason why was probably that I installed the SDK without admin rights and that  Visual Studio Code 2022 is updated that it could not read SDK files properly. So, after hours of unsuccessful troubleshooting, I decided to use the latest versions of everything and adapt to them.
 - I found that Jeff Brown used another method to bind the Azure Cosmos DB. https://jeffbrown.tech/azure-cloud-resume-challenge-part-3/
--- On my personal Mac, I downloaded .NET SDK 7.0 (Arm64) so the latest Azure Functions Core Tools could support it. And when creating the azure function, I selected .NET SDK 7.0 and continue with func host start, and the Visitor Counter worked fine, with quite a few modifications to read CosmosDB and StringContent attributes properly. Troubleshooting took a lot of time to remove conflicting libraries. And a lot of testing and validation. But finally it worked after two full days of work.
+- On my personal Mac, I downloaded .NET SDK 7.0 (Arm64) so the latest Azure Functions Core Tools could support it. And when creating the azure function, I selected .NET SDK 7.0 and continue with func host start, and the Visitor Counter worked fine, with quite a few modifications to read CosmosDB and StringContent attributes properly. Troubleshooting took a lot of time to remove conflicting libraries. And a lot of testing and validation. But finally it worked after two full days of work.
 - I realized the JsonProperty names are case-sensitive and prevented me to connect to Cosmos DB at one point. And I made a typo by typing "Hosts" instead of "Host" for CORS settings which prevented fetching API via Javascript. Took me a while to realize.
 
 Troubleshooting techniques
