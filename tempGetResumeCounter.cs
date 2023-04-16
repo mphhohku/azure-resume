@@ -10,43 +10,37 @@ namespace Company.Function
 {
     public class GetResumeCounter
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<GetResumeCounter> _logger;
 
-        public GetResumeCounter(ILoggerFactory loggerFactory)
+        public GetResumeCounter(ILogger<GetResumeCounter> logger)
         {
-            _logger = loggerFactory.CreateLogger<GetResumeCounter>();
+            _logger = logger;
         }
+
 
         private static readonly string databaseName = "AzureResume";
         private static readonly string collectionName = "Counter";
-        private static readonly string connectionString = "AzureResumeConnectionString";
+        // private static readonly string connectionString = Environment.GetEnvironmentVariable("AzureResumeConnectionString");
         private static readonly string id = "1";
         private static readonly string partitionKey = "1";
 
         [Function("GetResumeCounter")]
         public static async Task<HttpResponseMessage> Run(
-           [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
-           // [CosmosDB(databaseName:"AzureResume",collectionName:"Counter",ConnectionString="AzureResumeConnectionString", Id="1", PartitionKey="1")] Counter counter,
-           // [CosmosDB(databaseName:"AzureResume",collectionName:"Counter",ConnectionString="AzureResumeConnectionString", Id="1", PartitionKey="1")] out Counter updatedCounter,
-            ILogger log)
+           [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
+           ILogger _logger)
         {
-            log.LogInformation("Visitor counter triggered.");
+            // Check if _logger is null
+            if (_logger == null)
+            {
+            // Reinitialize _logger
+            _logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger<GetResumeCounter>();
+            }
 
-            // updatedCounter = counter;
-            // updatedCounter.Count += 1;
-
-            // var jsonToReturn = JsonConvert.SerializeObject(counter);
-
-            // return new HttpResponseMessage(HttpStatusCode.OK)
-            // {
-            //   Content = new StringContent(jsonToReturn, System.Text.Encoding.UTF8, "application/json")
-            // };
-        
-        // Get the Cosmos DB client instance
-try
+       // Get the Cosmos DB client instance
+        try
             {
                 // Connect to Cosmos DB database
-                var client = new CosmosClient(connectionString);
+                var client = new CosmosClient(Environment.GetEnvironmentVariable("AzureResumeConnectionString"));
                 var database = client.GetDatabase(databaseName);
                 var container = database.GetContainer(collectionName);
 
@@ -64,14 +58,17 @@ try
 
                 // Return the updated count as a JSON string
                 var json = JsonConvert.SerializeObject(counter);
+                // string json = "{\"count\":" + count + "}";
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 return new HttpResponseMessage(HttpStatusCode.OK) { Content = content };
+                
             }
             catch (Exception ex)
             {
-                log.LogError(ex, "Failed to count visitors");
+                _logger.LogError(ex, "Failed to count visitors");
                 return new HttpResponseMessage(HttpStatusCode.InternalServerError);
             }
         }
+        
     }
 }
