@@ -7,10 +7,10 @@ namespace Company.Function
         [JsonProperty(PropertyName="id")] //the property name string is case-sensitive!
         public string Id {get; set;} = "1";
         
-        [JsonProperty(PropertyName="PartitionKey")]
+        [JsonProperty(PropertyName="partitionKey")]
         public string PartitionKey { get; set; } = "1";
 
-        [JsonProperty(PropertyName="Count")]
+        [JsonProperty(PropertyName="count")]
         public int Count {get; set;} 
     }
 }

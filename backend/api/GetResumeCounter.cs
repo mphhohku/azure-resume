@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.Cosmos;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 
 namespace Company.Function
 {
@@ -59,8 +58,10 @@ namespace Company.Function
 
                 // Return the updated count as a JSON string
                 var json = JsonConvert.SerializeObject(counter);
+                // string json = "{\"count\":" + count + "}";
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 return new HttpResponseMessage(HttpStatusCode.OK) { Content = content };
+                
             }
             catch (Exception ex)
             {
