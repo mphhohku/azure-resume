@@ -18,6 +18,7 @@ First-times
 - Using new development tools and VS Code extensions such as .NET SDK 3.1, Azure Functions, Azure Functions Core Tools, Node.js
 - Using tools such as Chocolatey for Windows and Hebrew for MacOS
 - Prompting ChatGPT-3.5 and 4 to output coding ideas for GetResumeCounter.cs and main.js.
+- Deploying the static website to Azure using Blob Storage. Adding HTTPS support and custom domain support.
 
 Modifications of the frontend template for the website
 - Add more nav links and troubleshoot CSS issues related to changing colors on scroll
