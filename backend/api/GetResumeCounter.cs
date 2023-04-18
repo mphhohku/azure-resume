@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Functions.Worker.Http;
-using Microsoft.AspNetCore.Http;
 
 namespace Company.Function
 {
@@ -22,7 +21,7 @@ namespace Company.Function
         private static readonly string partitionKey = "1";
 
         [Function("GetResumeCounter")]
-        public async Task<HttpResponseData> Run(Microsoft.AspNetCore.Http.HttpRequest request, Counter counter, [HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
+        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
@@ -49,11 +48,6 @@ namespace Company.Function
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
             response.WriteString(json);
             return response;
-        }
-
-        public static HttpResponseMessage Run(HttpRequest request, Counter counter1, out Counter? counter2, ILogger logger)
-        {
-            throw new NotImplementedException();
         }
     }
 }
