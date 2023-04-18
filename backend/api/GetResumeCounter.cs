@@ -26,6 +26,7 @@ namespace Company.Function
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
+            // Launch a Cosmos Client
             var client = new CosmosClient(Environment.GetEnvironmentVariable("AzureResumeConnectionString"));
             var database = client.GetDatabase(databaseName);
             var container = database.GetContainer(collectionName);
