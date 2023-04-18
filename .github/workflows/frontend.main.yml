@@ -22,12 +22,6 @@ jobs:
         azcliversion: 2.47.0
         inlineScript: |
             az storage blob upload-batch --overwrite true --account-name mhazureresumestoragename --auth-mode key -d '$web' -s frontend/
-    - name: Purge CDN endpoint
-      uses: azure/CLI@v1
-      with:
-        azcliversion: 2.47.0
-        inlineScript: |
-           az cdn endpoint purge --content-paths  "/*" --profile-name mhazureresume --name mhazureresume --resource-group mhazureresumestorage
 
   # Azure logout
     - name: logout
