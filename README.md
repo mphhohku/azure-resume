@@ -30,6 +30,7 @@ Major hiccups and solutions
 - I was trying to finish this project using the NET SDK 3.1 version, following what Gwyn would do in her tutorial on YouTube. The reason why was probably that I installed the SDK without admin rights and that  Visual Studio Code 2022 is updated that it could not read SDK files properly. So, after hours of unsuccessful troubleshooting, I decided to use the latest versions of everything and adapt to them.
 - On my personal Mac, I downloaded .NET SDK 7.0 (Arm64) so the latest Azure Functions Core Tools could support it. And when creating the azure function, I selected .NET SDK 7.0 and continue with func host start, and the Visitor Counter worked fine, with quite a few modifications to read CosmosDB and StringContent attributes properly. Troubleshooting took a lot of time to remove conflicting libraries. And a lot of testing and validation. But finally it worked after two full days of work.
 - I realized the JsonProperty names are case-sensitive and prevented me to connect to Cosmos DB at one point. And I made a typo by typing "Hosts" instead of "Host" for CORS settings which prevented fetching API via Javascript. Took me a while to realize.
+- The yaml file broke with the template and the latest AZ CLI version. It turns out an "--overwrite true" flag is needed for the "az storage blob upload-batch" command.
 
 Troubleshooting techniques
 - Googling the questions I had/error codes. Most answers were on stackexchange and github discussion forums.
