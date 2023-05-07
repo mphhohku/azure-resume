@@ -35,7 +35,7 @@ Major hiccups and solutions
 Troubleshooting techniques
 - Googling the questions I had/error codes. Most answers were on stackexchange and github discussion forums.
 - YouTube tutorials also help when documentation is too overloaded. For example, for the function.json, I referenced https://www.youtube.com/watch?v=9DtLz1fcsBM .
-- ChatGPT-3.5 was hesitant when trying to point out the errors.
+- ChatGPT-3.5 was not exactly very useful in debugging and was hesitant when trying to point out the errors in the code.
 
 Notes
 - I found that Jeff Brown used another method to bind the Azure Cosmos DB. https://jeffbrown.tech/azure-cloud-resume-challenge-part-3/
