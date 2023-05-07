@@ -2,7 +2,7 @@
 My own Azure resume following A Cloud Guru Projects video in 2021 https://www.youtube.com/watch?v=ieYrBWmkfno&list=PLI1_CQcV71Rn-Om5fPU47KExd7ZQjvpl9 (With adaptation to 2023 solutions)
 
 - Project start date: 11 April 2023
-- Project end date: April 2023
+- Project end date: 19 April 2023
 
 Why I decided to take this challenge
 After getting some CompTIA certifications and finishing LinkedIn Learning courses on CISSP and CISA, I decided to read through the materials of learning paths on Microsoft Learn but I quickly got burned out because I was just reading but not internalizing the knowledge to boost my technical skills meaningfully. I decided to switch from certification-based learning to project-based learning. I know Gwyn as a YouTuber who promotes her LearnToCloud platform, so I think following her tutorial would be a great start for my entry to cloud engineering knowledge, and adding the project to my tech portfolio would improve my chance to progress in the tech industry.
