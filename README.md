@@ -31,6 +31,7 @@ Major hiccups and solutions
 - On my personal Mac, I downloaded .NET SDK 7.0 (Arm64) so the latest Azure Functions Core Tools could support it. And when creating the azure function, I selected .NET SDK 7.0 and continue with func host start, and the Visitor Counter worked fine, with quite a few modifications to read CosmosDB and StringContent attributes properly. Troubleshooting took a lot of time to remove conflicting libraries. And a lot of testing and validation. But finally it worked after two full days of work.
 - I realized the JsonProperty names are case-sensitive and prevented me to connect to Cosmos DB at one point. And I made a typo by typing "Hosts" instead of "Host" for CORS settings which prevented fetching API via Javascript. Took me a while to realize.
 - The Github Actions workflow was not working with the template and the latest AZ CLI version. It turned out an "--overwrite true" flag is needed for the "az storage blob upload-batch" command.
+- Several weeks later, the resources group charges me 10+ USD. It turned out I did not turn off the Microsoft Defender for Cloud which charges a sum for each and every storage account.
 
 Troubleshooting techniques
 - Googling the questions I had/error codes. Most answers were on stackexchange and github discussion forums.
