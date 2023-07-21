@@ -4,6 +4,12 @@ My own Azure resume following A Cloud Guru Projects video in 2021 https://www.yo
 - Project start date: 11 April 2023
 - Project end date: 19 April 2023
 
+## Main features
+- A static website hosted on Azure Blob Storage with HTTPS support and custom domain support
+- A visitor counter that counts the number of visitors to the website and stores the data in Azure Cosmos DB
+- Continuous integration and deployment with Github Actions
+
+## Reflections
 Why I decided to take this challenge
 - After getting some CompTIA certifications and finishing LinkedIn Learning courses on CISSP and CISA, I decided to read through the materials of learning paths on Microsoft Learn but I quickly got burned out because I was just reading but not internalizing the knowledge to boost my technical skills meaningfully. I decided to switch from certification-based learning to project-based learning. I know Gwyn as a YouTuber who promotes her LearnToCloud platform, so I think following her tutorial would be a great start for my entry to cloud engineering knowledge, and adding the project to my tech portfolio would improve my chance to progress in the tech industry.
 
